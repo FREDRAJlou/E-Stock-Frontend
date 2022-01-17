@@ -8,9 +8,10 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class NavigationService {
+  token:any;
   items: MenuItem[];
   userItems:MenuItem[];
-  user: User={id:0,name:'',password:'',role:'',userId:''};
+  user: any={id:0,userName:'',password:'',role:'',userId:''};
   constructor(private route : Router) {
     this.userItems=[];
     this.items=[{
@@ -19,7 +20,7 @@ export class NavigationService {
        { label: 'Stocks', routerLink:"./stocks"
       },
      ]
-     if(this.user.role){
+     if(this.user.userId){
        this.items.push( { label: 'LogOut', routerLink:"./home"
       });
      }else{
@@ -35,10 +36,11 @@ export class NavigationService {
       },
      ];
      console.log('inside setting logout'+this.items);
-     console.log('inside setting logout'+this.user.role);
-     if(this.user.role!=''){
+     console.log('inside setting logout'+this.user.userId);
+     if(this.user.userId!=''){
        this.items.push( { label: 'LogOut', routerLink:"./home",command:()=>{
-         this.user={id:0,name:'',password:'',role:'',userId:''};
+         this.user={id:0,userName:'',password:'',role:'',userId:''};
+         this.token='';
          this.setNavBar();
          this.route.navigate(["./home"]);
        }

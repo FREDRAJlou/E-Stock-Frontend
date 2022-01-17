@@ -1,5 +1,3 @@
-<!-- 
-<!-- <p-messages [(value)]="msgs"></p-messages> -->
 <p-toast position="top-right"></p-toast>
 
 
@@ -9,17 +7,16 @@
         <div class="p-col-12 p-md-4">
             <div class="p-inputgroup">
                 <span class="p-inputgroup-addon">Username :</span>
-                <input type="text" pInputText [(ngModel)]="user.name" required placeholder="UserName">         
+                <input type="text" pInputText [(ngModel)]="user.userName" required placeholder="UserName">         
             </div>
         </div>
-        <div>
-            <div class="p-col-1 p-md-4">
+            <div class="p-col-12 p-md-4">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon">Password :</span>
-                    <p-password  [(ngModel)]="user.password" required [feedback]="false" [toggleMask]="true" placeholder="password" ></p-password>        
+                    <input type="password"  [feedback]=false [(ngModel)]="user.password"  placeholder="password" pPassword />
+                    <!-- <p-password  [(ngModel)]="user.password" [toggleMask]="true" placeholder="password" ></p-password>         -->
                 </div>
             </div>
-        </div>
     </div>
 
     <p-button  (onClick)="login()" label="Login"></p-button>
@@ -27,21 +24,19 @@
 <p-tabPanel header="Register">
     <div>
         <div class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">Username :</span>
-                <input type="text" pInputText [(ngModel)]="user.name" placeholder="UserName">         
+            <div >
+                <span>Username :</span>
+                <input type="text" pInputText [(ngModel)]="user.userName" placeholder="UserName">         
             </div>
         </div>
-        <div>
-            <div class="p-col-12 p-md-4">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon">Password :</span>
-                    <p-password [(ngModel)]="user.password"  strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"  [toggleMask]="true" placeholder="password" ></p-password>        
+            <div class="p-col-1 p-md-4">
+                <div >
+                    <span>Password : </span>
+                  <p-password [(ngModel)]="user.password"   strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})" placeholder="password" >
+                                           </p-password>         
                 </div>
             </div>
-        </div>
     </div>
     <p-button  (onClick)="register()" label="Register"></p-button>
 </p-tabPanel>
 </p-tabView>
- -->

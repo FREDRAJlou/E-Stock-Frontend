@@ -5,6 +5,7 @@ import {  formatDate } from '@angular/common';
 import { MessageService } from 'primeng/api';
   
 import { Inject,  LOCALE_ID }  from '@angular/core';
+import { NavigationService } from 'src/nested/services/navigation.service';
 
 @Component({
   selector: 'app-stocks',
@@ -19,13 +20,19 @@ export class StocksComponent implements OnInit {
   minPrice:any;
   maxPrice:any;
   avgPrice:any;
-  constructor(public msgService : MessageService, public service : StockService,@Inject(LOCALE_ID) public locale: string) { }
+  constructor(private navService: NavigationService, public msgService : MessageService, public service : StockService,@Inject(LOCALE_ID) public locale: string) { }
 
   ngOnInit(): void {
-
+    if(!this.navService.token || this.navService.token==''){
+      this.msgService.add({severity:'warning', summary:'Login to continue', detail:""});
+    }
   }
 
   findStocks(){
+    if(!this.navService.token || this.navService.token==''){
+      this.msgService.add({severity:'warning', summary:'Login to continue', detail:""});
+      return;
+    }
     if(!this.search.companyCode||this.search.companyCode==''||this.search.companyCode==null){
       this.msgService.add({severity:'warning', summary:'CompanyCode is required'+this.search.companyCode, detail:""});
     }
@@ -37,7 +44,6 @@ export class StocksComponent implements OnInit {
     
       }else{
       this.company = this.companies[0];
-      this.stocks=this.company.stocks;
       if(this.companies.length!=0&&this.stocks?.length==0){
         this.msgService.add({severity:'warning', summary:'No Stocks Available for '+this.search.companyCode, detail:""});
       }

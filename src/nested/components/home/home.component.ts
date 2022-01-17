@@ -11,7 +11,7 @@ import { NavigationService } from 'src/nested/services/navigation.service';
 })
 export class HomeComponent implements OnInit {
 
-  user:User;
+  user:any;
   constructor(private route : Router, private navService: NavigationService) { 
     console.log(this.navService.user);
     this.user = this.navService.user;
@@ -25,63 +25,19 @@ export class HomeComponent implements OnInit {
 
   }
 
+  login(){
+      this.route.navigate(['./login']);
+  }
+
   searchStocks(){
-    this.route.navigate(['./stocks']);
-  }
-
-  searchFlight(){
-    this.route.navigate(['./stocks']);
-  }
-
-  bookTicket(){
-    if(this.user.role=="USER"){
-      console.log(this.user.name);
-      this.route.navigate(['./user/bookFlight']);
-    }else if(this.user.role=="ADMIN"){
-      this.route.navigate(['./admin/manageAirlines']);
+    if(this.user.userName!=''){
+      console.log(this.user.userName);
+      this.route.navigate(['./stocks']);
     }else{
       this.route.navigate(['./login']);
     }
   }
 
-  manageBookings(){
-    if(this.user.name!=''){
-      console.log(this.user.name);
-      this.route.navigate(['./user/manageBooking']);
-    }else{
-      this.route.navigate(['./login']);
-    }
-  }
-
-  manageAirlines(){
-    if(this.user.name!=''){
-      console.log(this.user.name);
-      this.route.navigate(['./admin/manageAirlines']);
-    }else{
-      this.route.navigate(['./login']);
-    }
-  }
-
- addAirlines(){
-    if(this.user.name!=''){
-      console.log(this.user.name);
-      this.route.navigate(['./admin/addAirlines']);
-    }else{
-      this.route.navigate(['./login']);
-    }
-  }
-
-  viewBookings(){
-    if(this.user.name!=''){
-      console.log(this.user.name);
-      this.route.navigate(['./user/bookingHistory']);
-    }else{
-      this.route.navigate(['./login']);
-    }
-  }
-
-estimateTicket(){
   
-}  
-
+ 
 }

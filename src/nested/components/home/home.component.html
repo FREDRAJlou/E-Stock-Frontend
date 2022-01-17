@@ -1,8 +1,11 @@
 <p-toast position="top-right"></p-toast>
 <p-card>
-    <h2>Welcome to E-Stocks<span *ngIf="user">{{user.name}}</span></h2>
-    <h3>What can we do for you?</h3>
-    <div *ngIf="!user.name">
+    <h2>Welcome to E-Stocks <span *ngIf="user"> {{user.userName}}</span></h2>
+    <div *ngIf="!user.userName" [ngStyle]="{'padding':'10px 10px'}" >
+        <h3>Register/Login to search stock details</h3>
+        <p-button [ngStyle]="{'margin-bottom':'10px'}"  (onClick)="login()" label="Login"></p-button><br>
+        </div>
+    <div *ngIf="user.userName">
     <div [ngStyle]="{'padding':'10px 10px'}" >
     <p-button [ngStyle]="{'margin-bottom':'10px'}"  (onClick)="searchStocks()" label="Search Stocks"></p-button><br>
     </div>

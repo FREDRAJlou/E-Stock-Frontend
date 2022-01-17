@@ -13,7 +13,7 @@ import { NavigationService } from './services/navigation.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'FlightBooking';
+  title = 'E-stock';
   loading:boolean=false;
   constructor(private router: Router) {
     this.router.events.subscribe((event: Event) => {
